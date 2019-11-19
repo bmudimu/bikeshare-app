@@ -8,9 +8,9 @@ from flask import (jsonify)
 class BikeshareController:
     """
     This is a class for all the data processing
-    
+
     """
-    
+
     def getBikeStats(self, city, month, day):
         """
         The function to calculate the statistics and process raw data
@@ -36,13 +36,13 @@ class BikeshareController:
             months = dict(zip(df.Month_name.str.lower(), df.Month))
             month = months[month.lower()]
             df = df[df['Month'] == month]
-        
+
         if day.lower() != 'all': # If a day filter has been provided
             df = df[df['Day_of_Week'] == day.title()]
-        
-        # A dictionary object to prepare for json conversion
+
+        # A dictionary object to hold all the stats and prepare for json conversion
         bike_stats = {
-            'freq_month_of_travel': str(df.Month_name.mode()[0]),
+            'freq_month_of_travel': str(df.Month_name.mode()[0]), 
             'freq_day_of_travel' : df.Day_of_Week.mode()[0],
             'freq_hour_of_travel' : str(df.Hour.mode()[0]),
             'used_start_station' : df['Start Station'].mode()[0],
@@ -61,9 +61,9 @@ class BikeshareController:
             bike_stats['male_count'] = 'N/A'
         if 'User Type' in df.columns:
             user_count_dict = df['User Type'].replace(0,np.nan).value_counts().to_dict() # Avoiding errors when converting to lowercase since we have str and float
-            
+
             for key in user_count_dict:
-                bike_stats[key.lower() + '_count'] = user_count_dict[key]          
+                bike_stats[key.lower() + '_count'] = user_count_dict[key]
         else:
             bike_stats['customer_count'] = 'N/A'
             bike_stats['subscriber_count'] = 'N/A'
@@ -72,14 +72,14 @@ class BikeshareController:
             bike_stats['earliest_birth_year'] = str(df['Birth Year'].replace(0,np.nan).min())
             bike_stats['recent_birth_year'] = str(df['Birth Year'].replace(0,np.nan).max())
             bike_stats['common_birth_year'] = str((df['Birth Year']).mode()[0])
-        else:            
+        else:
             bike_stats['earliest_birth_year'] = 'N/A'
             bike_stats['recent_birth_year'] = 'N/A'
-            bike_stats['common_birth_year'] = 'N/A'    
+            bike_stats['common_birth_year'] = 'N/A'
 
         json_reports = json.dumps(bike_stats)
-        df.columns = df.columns.str.replace(' ', '_')
-        df_dict = df.loc[:, 'Start_Time':'Hour'].head(8).to_dict('records') # Object to get a view of the raw data. Return first 8 rows
+        df.columns = df.columns.str.replace(' ', '_') # Remove spaces from all column names and replace with underscore
+        df_dict = df.loc[:, 'Start_Time':'Hour'].head(8).to_dict('records') # Dictionary object to get a view of the raw data. Return first 8 rows
         raw_json = json.dumps(df_dict, default=str)
 
         return json_reports, raw_json

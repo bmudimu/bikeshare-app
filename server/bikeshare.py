@@ -9,11 +9,11 @@ api = Api(bikeshare)
 CORS(bikeshare)
 
 
-class Serve_CLIENT(Resource): #This route will serve the react client build index.html file
+class Serve_CLIENT(Resource): #This route will serve the react client index.html file
     def __init__(self):
         pass
     def get(self):
-        headers = {'Content-Type': 'text/html'}
+        headers = {'Content-Type': 'text/html'} # This is to ensure the served request is in the right html format
         return make_response(render_template('index.html'), 200, headers)
 
 
@@ -23,7 +23,7 @@ class Bike_API(Resource): # This route will handle the requests to the api
         city = json_data['city']
         month = json_data['month']
         day = json_data['day']
-        print(json_data) # CLI print window to see the received filters 
+        print(json_data) # CLI print window to see the received filters
 
         bike = BikeshareController()
         bike_reports = bike.getBikeStats(city, month, day)
