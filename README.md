@@ -1,6 +1,7 @@
 # Project Title
 
 US Bikeshare Data Analysis with **Python, FLASK and React**
+![app screenshot](screenshots/bikeshare-app.png)
 
 ## Getting Started
 I thought I could create a web app instead of the basic CLI user prompts that
