@@ -9,8 +9,8 @@ bootstrapped with [Create React App](https://github.com/facebook/create-react-ap
 and provides a GUI for users to query the Data and get some basic statistics from
 the backend flask API.
 
-You can follow these notes to get you a copy of the project up and running on your
-local machine for development and testing purposes.
+You can follow these notes to get a copy of the project running on your local
+machine for development and testing purposes.
 
 ## Git Clone Repository
 Git clone https://github.com/bmudimu/bikeshare-app.git
@@ -27,14 +27,14 @@ Run npm install
  Run npm build.
 
 * cd server/
-### 'bikeshare.py'
-CLI **run python bikeshare.py**
+### 'run bikeshare.py'
+**python bikeshare.py**
 
 ### Prerequisites
-**node.js**
-**Python**
+* **Node.js**
+* **Python**
 
-### pip install -r requirements.txt
+* **pip install -r requirements.txt**
 
 ## Built With
 
@@ -43,7 +43,7 @@ CLI **run python bikeshare.py**
 
 ## Author
 
-* **Brian Mudimu** - *As part of my learning * - [Udacity - Programming for Data Science nanodegree](https://www.udacity.com/course/programming-for-data-science-nanodegree--nd104)
+* **Brian Mudimu** - *As part of my learning* - [Udacity - Programming for Data Science nanodegree](https://www.udacity.com/course/programming-for-data-science-nanodegree--nd104)
 
 ## License
 
